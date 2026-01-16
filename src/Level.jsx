@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
+import { useGLTF } from "@react-three/drei";
+
+
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
@@ -26,6 +29,8 @@ function BlockStart({ position = [0, 0, 0] }) {
 
 
 function BlockEnd({ position = [0, 0, 0] }) {
+
+  const hamburger = useGLTF("./hamburger.glb")
   return (
     <group position={position}>
       <mesh
@@ -35,6 +40,9 @@ function BlockEnd({ position = [0, 0, 0] }) {
         scale={[4, -0.2, 4]}
         receiveShadow
       />
+      <RigidBody type="fixed" colliders="hull" restitution={0.2} friction={0} position={[0, 0.25, 0]}>
+      <primitive object={hamburger.scene} scale={0.2}/>
+      </RigidBody>
     </group>
   );
 }
