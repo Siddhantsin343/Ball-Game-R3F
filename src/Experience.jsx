@@ -12,8 +12,8 @@ export default function Experience()
     const blocksSeed = useGame((state)=>{ return state.blocksSeed})
     return <>
 
-        {/* <OrbitControls makeDefault /> */}
 
+    <color args={['#bdedfc']}  attach="background"/>
     <Physics>
         <Lights />
         <Level count={blocksCount} seed={blocksSeed}/>
